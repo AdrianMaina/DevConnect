@@ -1,8 +1,7 @@
 from fastapi import FastAPI
-from routes import jobs, proposals, users
-from fastapi import FastAPI
-from routes import jobs, proposals, users  # only if you've created them
-from database import create_tables
+from backend.routes import jobs, proposals, users
+from backend.database import create_tables
+
 
 app = FastAPI()
 
@@ -12,4 +11,5 @@ def startup():
 
 # Register routes
 app.include_router(jobs.router, prefix="/jobs")
-# You can comment out proposals and users if not implemented yet
+app.include_router(proposals.router, prefix="/proposals")
+app.include_router(users.router, prefix="/users")
